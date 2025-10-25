@@ -1,7 +1,16 @@
+import os
+from dotenv import load_dotenv
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
+
+# Load environment variables
+load_dotenv()
+
+# Ensure OpenAI API key is set
+if not os.getenv("OPENAI_API_KEY"):
+    raise ValueError("OPENAI_API_KEY environment variable is not set")
 
 @CrewBase
 class NewsletterCrew():
